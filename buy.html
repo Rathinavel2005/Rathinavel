@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 class="page-title">Payment Details</h1>
+
+<div class="form-box">
+  <h2 id="bookName"></h2>
+  <p id="bookPrice"></p>
+
+  <input type="text" id="fullName" placeholder="Full Name">
+  <input type="tel" id="mobile" placeholder="Mobile Number">
+  <input type="email" id="email" placeholder="Email ID">
+  <textarea id="address" placeholder="Delivery Address"></textarea>
+
+  <!-- ONLY CASH ON DELIVERY -->
+  <select id="paymentMethod">
+    <option value="">Select Payment Method</option>
+    <option value="cod">Cash on Delivery</option>
+  </select>
+
+  <button class="btn" onclick="payNow()">Confirm Order</button>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const book = params.get("book") || "Book";
+  const price = params.get("price") || "0";
+
+  document.getElementById("bookName").innerText = book;
+  document.getElementById("bookPrice").innerText = "Price: ₹" + price;
+
+  function payNow() {
+    const name = document.getElementById("fullName").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const payment = document.getElementById("paymentMethod").value;
+
+    if (!name || !mobile || !email || !address || !payment) {
+      alert("Please fill all details");
+      return;
+    }
+
+    // SAVE ORDER
+    const order = {
+      book,
+      price,
+      name,
+      mobile,
+      email,
+      address,
+      payment,
+      date: new Date().toLocaleString()
+    };
+
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert("✅ Order placed successfully!");
+
+    // GO TO ORDERED ITEMS PAGE
+    window.location.href = "order.html";
+  }
+</script>
+
+
+</body>
+</html>

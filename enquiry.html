@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Enquiry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <h2>📚 BookNest</h2>
+  <a href="index.html" class="btn">Home</a>
+</nav>
+
+<h1 class="page-title">Book Enquiry</h1>
+
+<div class="form-box">
+  <h2>Enquire About a Book</h2>
+
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="email" id="email" placeholder="Email ID">
+  <input type="text" id="book" placeholder="Book Name">
+  <textarea id="message" placeholder="Your Enquiry"></textarea>
+
+  <button class="btn" onclick="sendEnquiry()">Send Enquiry</button>
+</div>
+
+<script>
+  function sendEnquiry() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const book = document.getElementById("book").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name) {
+      alert("Please enter your name");
+      return;
+    }
+    if (!email) {
+      alert("Please enter your email");
+      return;
+    }
+    if (!book) {
+      alert("Please enter book name");
+      return;
+    }
+    if (!message) {
+      alert("Please enter your enquiry");
+      return;
+    }
+
+    alert(
+      "📩 Enquiry Sent Successfully!\n\n" +
+      "We will contact you soon regarding:\n" +
+      book
+    );
+
+    // Clear form
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("book").value = "";
+    document.getElementById("message").value = "";
+  }
+</script>
+
+</body>
+</html>

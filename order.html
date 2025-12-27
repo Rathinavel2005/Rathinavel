@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Orders</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <h2>📦 My Orders</h2>
+  <a href="index.html" class="btn">Home</a>
+</nav>
+<h1 class="page-title">Ordered Books</h1>
+
+<div class="book-grid" id="orderList"></div>
+
+<script>
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const list = document.getElementById("orderList");
+
+  if (orders.length === 0) {
+    list.innerHTML = "<h1 style='text-align:center'>No orders yet</h1>";
+  }
+
+  orders.forEach(order => {
+    const div = document.createElement("div");
+    div.className = "book-card";
+
+    div.innerHTML = `
+      <h3>${order.book}</h3>
+      <p>Price: ₹${order.price}</p>
+      <p>Payment: Cash on Delivery</p>
+      <p>Ordered on: ${order.date}</p>
+    `;
+
+    list.appendChild(div);
+  });
+</script>
+
+</body>
+</html>

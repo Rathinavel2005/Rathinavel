@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upcoming Books</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <h2>📚 BookNest</h2>
+  <a href="index.html" class="btn">Home</a>
+</nav>
+
+<h1 class="page-title">Upcoming Books</h1>
+
+<div class="book-grid">
+  <script>
+  const upcomingBooks = [
+    { name: "Project Hail Mary", img: "21.jpg" },
+    { name: "Lessons in Chemistry", img: "22.jpg" },
+    { name: "Tomorrow, and Tomorrow, and Tomorrow", img: "23.jpg" },
+    { name: "Sea of Tranquility", img: "24.jpg" },
+    { name: "The Candy House", img: "25.jpg" },
+    { name: "Demon Copperhead", img: "26.jpg" },
+    { name: "The Lincoln Highway", img: "27.jpg" },
+    { name: "Young Mungo", img: "28.jpg" },
+    { name: "Shrines of Gaiety", img: "29.jpg" },
+    { name: "Trust", img: "30.jpg" }
+  ];
+upcomingBooks.forEach((book) => {
+    document.write(`
+      <div class="book-card upcoming">
+        <img src="${book.img}" alt="${book.name}">
+        <h3>${book.name}</h3>
+        <p class="release-badge">Release Soon</p>
+      </div>
+    `);
+  });
+</script>
+</div></body></html>
